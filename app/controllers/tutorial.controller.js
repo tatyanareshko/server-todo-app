@@ -11,9 +11,23 @@ exports.create = (req, res) => {
 
   // Create a Tutorial
   const tutorial = new Tutorial({
-    title: req.body.title,
-    description: req.body.description,
-    published: req.body.published ? req.body.published : false
+    name: req.body.name,
+    age: req.body.age,
+    country: req.body.country,
+    dayDOB: req.body.dayDOB,
+    monthDOB: req.body.monthDOB,
+    yearDOB: req.body.yearDOB,
+    sexType: req.body.sexType,
+    height: req.body.height,
+    weight: req.body.weight,
+    colorEyes: req.body.colorEyes,
+    colorHair: req.body.colorHair,
+    goalMeeting: req.body.goalMeeting,
+    aboutMyself: req.body.aboutMyself,
+    email: req.body.email,
+    password: req.body.password,
+    image: req.body.image,
+    type: req.body.type
   });
 
   // Save Tutorial in the database
@@ -32,8 +46,8 @@ exports.create = (req, res) => {
 
 // Retrieve all Tutorials from the database.
 exports.findAll = (req, res) => {
-  const title = req.query.title;
-  var condition = title ? { title: { $regex: new RegExp(title), $options: "i" } } : {};
+  const name = req.query.name;
+  var condition = name ? { name: { $regex: new RegExp(name), $options: "i" } } : {};
 
   Tutorial.find(condition)
     .then(data => {
@@ -130,7 +144,7 @@ exports.deleteAll = (req, res) => {
 
 // Find all published Tutorials
 exports.findAllPublished = (req, res) => {
-  Tutorial.find({ published: true })
+  Tutorial.find({ type: "top" })
     .then(data => {
       res.send(data);
     })
