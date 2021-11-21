@@ -1,10 +1,10 @@
 const db = require("../models");
-const Tutorial = db.tutorials;
+const Tutorial = db.profile;
 
 // Create and Save a new Tutorial
 exports.create = (req, res) => {
   // Validate request
-  if (!req.body.title) {
+  if (!req.body.name) {
     res.status(400).send({ message: "Content can not be empty!" });
     return;
   }
